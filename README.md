@@ -1,6 +1,11 @@
 PgBouncer Docker image
 ======================
 
+[![build](https://github.com/xchem/pgbouncer/actions/workflows/build.yaml/badge.svg)](https://github.com/xchem/pgbouncer/actions/workflows/build.yaml)
+[![release](https://github.com/xchem/pgbouncer/actions/workflows/release.yaml/badge.svg)](https://github.com/xchem/pgbouncer/actions/workflows/release.yaml)
+
+![GitHub Release](https://img.shields.io/github/v/release/xchem/pgbouncer?include_prereleases)
+
 This is a minimal PgBouncer image, based on Alpine Linux.
 
 Features:
