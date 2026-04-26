@@ -38,6 +38,23 @@ COPY entrypoint.sh /entrypoint.sh
 COPY --from=build /pgbouncer/pgbouncer /usr/bin
 COPY --from=build /pgbouncer/etc/pgbouncer.ini /etc/pgbouncer/pgbouncer.ini.example
 COPY --from=build /pgbouncer/etc/userlist.txt /etc/pgbouncer/userlist.txt.example
+
+# Set fragalysis-friendly defaults
+ENV AUTH_TYPE="scram-sha-256"
+ENV CANCEL_WAIT_TIMEOUT="0"
+ENV DEFAULT_POOL_SIZE="16"
+ENV LOG_CONNECTIONS="0"
+ENV LOG_DISCONNECTIONS="1"
+ENV MAX_CLIENT_CONN="1000"
+ENV MAX_DB_CONNECTIONS="16"
+ENV MIN_POOL_SIZE="16"
+ENV POOL_MODE="transaction"
+ENV QUERY_WAIT_TIMEOUT="0"
+ENV QUERY_WAIT_NOTIFY="0"
+ENV SERVER_IDLE_TIMEOUT="14400"
+ENV SERVER_RESET_QUERY="DISCARD ALL"
+ENV STATS_PERIOD="300"
+
 EXPOSE 5432
 USER postgres
 ENTRYPOINT ["/entrypoint.sh"]
