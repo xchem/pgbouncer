@@ -1,0 +1,27 @@
+---
+name: build
+
+on:
+  push:
+    tags-ignore:
+    - '**'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v6
+    - name: Lint Dockerfile
+      uses: hadolint/hadolint-action@v3.3.0
+      with:
+        dockerfile: Dockerfile
+    - name: Set up QEMU
+      uses: docker/setup-qemu-action@v4
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v4
+    - name: Docker build
+      uses: docker/build-push-action@v7
+      with:
+        context: .
+        tags: ${{ github.repository }}:latest
